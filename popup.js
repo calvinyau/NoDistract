@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#timer').show();
             count = document.getElementById('startTime').value;
             document.getElementById("timer").innerHTML = count + " secs";
+
+            chrome.runtime.sendMessage({operation: "popup-click", startTime: count}, function(response) {});
+
+            // BE TOLD WHEN TIME RUNS OUT
+
+
+
             counter = setInterval(function() {
                 count = count-1;
                 if (count <= 0) {
@@ -23,7 +30,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 document.getElementById("timer").innerHTML = count + " secs";
             }, 1000);
-            chrome.runtime.sendMessage({directive: "popup-click"}, function(response) {});
+            chrome.runtime.sendMessage({operation: "popup-click"}, function(response) {});
+
+
+
+
+
+
         }
         else {      //toggle off
             $('#toggle').html('No more distractions!');
@@ -31,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#setTime').show();
             $('#startTime').show();
             $('#timer').hide();
+            chrome.runtime.sendMessage({operation: "popup-click", startTime: 0}, function(response) {});
         }
     });
 });

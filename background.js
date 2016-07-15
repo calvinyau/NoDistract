@@ -1,10 +1,10 @@
 var toggle = false;
-var count;
+var startCount;
 var counter;
 chrome.tabs.executeScript(null, { file: "assets/jquery-3.0.0.min.js", allFrames: true});
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        switch (request.directive) {
+        switch (request.operation) {
         case "popup-click":
             if (toggle == false) {
                 toggle = true;
@@ -34,7 +34,6 @@ chrome.runtime.onMessage.addListener(
                 //     }
                 // });
                 chrome.tabs.onUpdated.addListener(function(tabid, changeInfo, tab) {
-                    console.log("FIRST");
                     // changeInfo.url is undefined when status == complete
                     if (changeInfo.status == 'loading') {
                         console.log("LOADING");
@@ -59,8 +58,12 @@ chrome.runtime.onMessage.addListener(
                 break;
             }
 
-        case "time":
-            
+        case "set-timer":
+            startCount = tabs[0].;
+            sendResponse({});
+
+        case "get-timer":
+
 
         default:
             // helps debug when request directive doesn't match
