@@ -1,79 +1,103 @@
-var count;
 var counter;
 var background = chrome.extension.getBackgroundPage();
-var days;
 var hours;
 var minutes;
+var totalTime;
 
 document.addEventListener('DOMContentLoaded', function() {
     var toggle = document.getElementById('toggle');
+    // Continue timer if already started
     if (background.toggle == true) {
         $('#toggle').html('Take a break!');
         $('#setTime').hide();
-        $('#startTime').hide();
+        $('#startHours').hide();
+        $('#startMinutes').hide();
+        $('#hr').hide();
+        $('#min').hide();
         $('#timer').show();
-        count = background.count;
-        // TODO: FIX INITIAL SET
-        if (count > 60) {
-            hours = Math.floor(count/60);
-            minutes = count % 60;
-            document.getElementById("timer").text(hours + " hours" + " minutes");
-        }
-        // TODO: FIX INITIAL SET
+
+        totalTime = background.totalTime;
+        hours = Math.floor(totalTime/60);
+        minutes = totalTime % 60;
+        document.getElementById("timer").innerHTML = hours + " hours " + minutes + " minutes remaining";
+
         counter = setInterval(function() {
-            count = count-1;
-            if (count <= 0) {
+            totalTime = totalTime - 1;
+            if (totalTime <= 0) {
                 clearInterval(counter);
                 $('#toggle').html('No more distractions!');
                 $('#setTime').show();
-                $('#startTime').show();
+                $('#startHours').show();
+                $('#startMinutes').show();
+                $('#hr').show();
+                $('#min').show();
                 $('#timer').hide();
                 return;
             }
-
-            // TODO: FIX COUNTDOWN
-            document.getElementById("timer").innerHTML = count + " secs";
+            hours = Math.floor(totalTime/60);
+            minutes = totalTime % 60;
+            document.getElementById("timer").innerHTML = hours + " hours " + minutes + " minutes remaining";
         }, 60000); // 1 minute interval
     }
 
+    // create new timer
     toggle.addEventListener('click', function() {
         if ($('#toggle').text() == 'No more distractions!') {  //toggle on
             $('#toggle').html('Take a break!');
             $('#setTime').hide();
-            $('#startTime').hide();
+            $('#startHours').hide();
+            $('#startMinutes').hide();
+            $('#hr').hide();
+            $('#min').hide();
             $('#timer').show();
-            count = document.getElementById('startTime').value;
-            document.getElementById("timer").innerHTML = count + " secs";
-            chrome.runtime.sendMessage({operation: "startTime", startTime: count}, function(response) {
+
+            hours = document.getElementById('startHours').value;
+            minutes = document.getElementById('startMinutes').value;
+            totalTime = parseInt(hours) * 60 + parseInt(minutes);
+            document.getElementById("timer").innerHTML = hours + " hrs " + minutes + " min remaining";
+
+            chrome.runtime.sendMessage({startHours: hours, startMinutes: minutes}, function(response) {
                 if (response == "END") {
                     $('#toggle').html('No more distractions!');
                     $('#setTime').show();
-                    $('#startTime').show();
+                    $('#startHours').show();
+                    $('#startMinutes').show();
+                    $('#hr').show();
+                    $('#min').show();
                     $('#timer').hide();
                     return;
                 }
             });
+
             counter = setInterval(function() {
-                count = count-1;
-                if (count <= 0) {
+                totalTime = totalTime - 1;
+                if (totalTime <= 0) {
                     clearInterval(counter);
                     $('#toggle').html('No more distractions!');
                     $('#setTime').show();
-                    $('#startTime').show();
+                    $('#startHours').show();
+                    $('#startMinutes').show();
+                    $('#hr').show();
+                    $('#min').show();
                     $('#timer').hide();
                     return;
                 }
-                document.getElementById("timer").innerHTML = count + " secs";
+                hours = Math.floor(totalTime/60);
+                minutes = totalTime % 60;
+                document.getElementById("timer").innerHTML = hours + " hrs " + minutes + " min remaining";
             }, 60000);
         }
         else {      //toggle off
             chrome.runtime.sendMessage("END",
                 function(response) {
                     if (response.reply == "END") {
-                        console.log("received end confirmation in pop")
+                        clearInterval(counter);
                         $('#toggle').html('No more distractions!');
                         $('#setTime').show();
-                        $('#startTime').show();
+                        $('#startHours').show();
+                        $('#startMinutes').show();
+                        $('#hr').show();
+                        $('#min').show();
                         $('#timer').hide();
                         return;
                     }

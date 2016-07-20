@@ -7,7 +7,7 @@ body {
     text-align: center;
 }
 
-#startTime {
+.startTime {
     width: 30px;
 }
 

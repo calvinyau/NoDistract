@@ -1,7 +1,8 @@
 var toggle = false;
-var startCount;
-var count;
 var counter;
+var hours;
+var minutes;
+var totalTime;
 
 function blockSite(tabid, changeInfo, tab) {
     // changeInfo.url is undefined when status == complete
@@ -21,20 +22,21 @@ function blockSite(tabid, changeInfo, tab) {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        if (request.startTime) {
+        if ((request.startHours > 0) || (request.startMinutes > 0)) {
             toggle = true;
-            console.log("Start time received in bg: " + request.startTime);
-            count = request.startTime;
+            hours = request.startHours;
+            minutes = request.startMinutes;
+            totalTime = parseInt(hours) * 60 + parseInt(minutes);
             counter = setInterval(function() {
-                count = count-1;
-                if (count <= 0) {   // timer has run out
+                totalTime = totalTime-1;
+                if (totalTime <= 0) {   // timer has run out
                     clearInterval(counter);
                     chrome.tabs.onUpdated.removeListener(blockSite);
                     toggle = false;
                     sendResponse("END");
                     return;
                 }
-            }, 60000);
+            }, 1000);
 
             chrome.tabs.onUpdated.addListener(blockSite);
             sendResponse({});
@@ -43,7 +45,6 @@ chrome.runtime.onMessage.addListener(
         else if (request == "END") {
             chrome.tabs.onUpdated.removeListener(blockSite);
             toggle = false;
-            console.log("END request received in bg");
             clearInterval(counter);
             sendResponse({reply: "END"});
             return;
