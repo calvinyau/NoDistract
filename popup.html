@@ -4,14 +4,18 @@
     <title>NoDistract</title>
     <script src="popup.js"></script>
     <script src="jquery-3.0.0.min.js"></script>
+    <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-    <h1>NoDistract</h1>
-    <div>
+    <h1 id="title">NoDistract</h1>
+    <div class="hori-divider"></div>
+    <div id="info" class="text-centered">
         <span id="timer"></span>
-        <span id="setTime">Sec. to stay focused:</span>
+        <span id="setTime">Time to stay focused:</span>
         <input type="number" name="startTime" id="startTime" value="10"></input>
     </div>
-    <button id="toggle" type="button">No more distractions!</button>
+    <div class="button-container">
+        <button id="toggle" type="button">No more distractions!</button>
+    </div>
   </body>
 </html>

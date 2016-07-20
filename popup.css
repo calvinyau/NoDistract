@@ -1,0 +1,37 @@
+body {
+    min-width:250px;
+    min-height:100px;
+}
+
+#title {
+    text-align: center;
+}
+
+#startTime {
+    width: 30px;
+}
+
+#info {
+    margin-top: 1.25em;
+    font-size: 1.1em;
+}
+
+#toggle {
+    width: 100%;
+    height: 2em;
+    font-size: 1.1em;
+}
+
+.text-centered {
+    text-align: center;
+}
+
+.hori-divider {
+    border-top: 1px solid #8c8b8b;
+}
+
+.button-container {
+    text-align: center;
+    margin: auto;
+    margin-top: 1em ;
+}

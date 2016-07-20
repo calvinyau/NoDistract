@@ -15,19 +15,10 @@
    "default_popup": "popup.html"
   },
 
-  // "content_scripts": [
-  //   {
-  //     "matches": ["http://*.facebook.com/*"],
-  //     "js": ["jquery-3.0.0.min.js"]
-  //   }
-  // ],
-
   "permissions": [
    "tabs",
-   "storage",
    "http://*/*",
-   "https://*/*",
-   "webNavigation"
+   "https://*/*"
    ]
  }
 

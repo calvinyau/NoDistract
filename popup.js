@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 document.getElementById("timer").innerHTML = count + " secs";
-            }, 1000);
+            }, 60000);
         }
         else {      //toggle off
             chrome.runtime.sendMessage("END",
@@ -81,24 +81,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-// chrome.browserAction.onClicked.addListener(function(tab) {
-//     // var toggle = document.getElementById('toggle');
-//     // if ($('#toggle').text() == 'No more distractions!') {
-//     if (background.toggle == true) {
-//         chrome.runtime.sendMessage({operation: "currentTime"}, function(response) {
-//             if (response.time_left) {
-//                 count = response.time_left;
-//                 document.getElementById("timer").innerHTML = count + " secs";
-//                 counter = setInterval(function() {
-//                     count = count-1;
-//                     if (count <= 0) {
-//                         clearInterval(counter);
-//                     }
-//                     document.getElementById("timer").innerHTML = count + " secs";
-//                 }, 1000);
-//             }
-//         });
-//     }
-// });
 
