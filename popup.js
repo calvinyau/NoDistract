@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         totalTime = background.totalTime;
         hours = Math.floor(totalTime/60);
         minutes = totalTime % 60;
-        document.getElementById("timer").innerHTML = hours + " hours " + minutes + " minutes remaining";
+        document.getElementById("timer").innerHTML = hours + " hrs " + minutes + " min remaining";
 
         counter = setInterval(function() {
             totalTime = totalTime - 1;
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             hours = Math.floor(totalTime/60);
             minutes = totalTime % 60;
-            document.getElementById("timer").innerHTML = hours + " hours " + minutes + " minutes remaining";
+            document.getElementById("timer").innerHTML = hours + " hrs " + minutes + " min remaining";
         }, 60000); // 1 minute interval
     }
 

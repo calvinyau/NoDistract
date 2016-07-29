@@ -36,7 +36,7 @@ chrome.runtime.onMessage.addListener(
                     sendResponse("END");
                     return;
                 }
-            }, 1000);
+            }, 60000);
 
             chrome.tabs.onUpdated.addListener(blockSite);
             sendResponse({});

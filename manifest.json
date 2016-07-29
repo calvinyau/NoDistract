@@ -1,13 +1,19 @@
  {
   "manifest_version": 2,
 
-  "name": "NoDistract",
+  "name": "NoDistraction",
   "description": "Block social media sites for designated periods of time so you can focus without distraction.",
   "version": "1.0",
 
   "background": {
     "scripts": ["background.js", "jquery-3.0.0.min.js"],
     "persistent": true
+  },
+
+  "icons": {
+    "128": "icon.png",
+    "48": "icon48.png",
+    "16": "icon16.png"
   },
 
   "browser_action": {
