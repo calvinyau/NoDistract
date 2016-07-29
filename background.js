@@ -10,12 +10,10 @@ function blockSite(tabid, changeInfo, tab) {
         console.log("LOADING");
         if (tab.url.includes("facebook.com") && changeInfo.url === undefined) {
             chrome.tabs.update({url: "https://google.com"});
-            alert("Refresh");
         }
         else if (changeInfo.url.includes("facebook.com")) {
             chrome.tabs.update({url: "https://google.com"});
             console.log(changeInfo.url);
-            alert("New Page");
         }
     }
 }
