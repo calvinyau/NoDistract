@@ -1,11 +1,12 @@
 body {
-    min-width:250px;
+    min-width:300px;
     min-height:100px;
+    font-family: 'Sansita', sans-serif;
 }
 
 #title {
     text-align: center;
-    font-family: 'Sansita', sans-serif;
+    color: #ff0000;
 }
 
 .startTime {
@@ -13,14 +14,24 @@ body {
 }
 
 #info {
-    margin-top: 1.25em;
+    margin: 1em 0;
     font-size: 1.5em;
 }
 
-#toggle {
+#toggle-button {
     width: 100%;
     height: 2em;
-    font-size: 1.1em;
+    font-size: 1.5em;
+    font-family: 'Sansita', sans-serif;
+    background: #ff0000;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    color: white;
+}
+
+#toggle-button:hover {
+    color: #ff0000;
+    background: white;
 }
 
 .text-centered {
@@ -31,8 +42,11 @@ body {
     border-top: 1px solid #8c8b8b;
 }
 
-.button-container {
+/*.button-container {
     text-align: center;
+    height: 2em;
     margin: auto;
-    margin-top: 1em ;
-}
+    margin-top: 1em;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+}*/
