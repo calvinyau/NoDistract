@@ -10,7 +10,22 @@ body {
 }
 
 .startTime {
-    width: 30px;
+    width: 25px;
+    height: 20px;
+    padding-left: 20px;
+}
+
+.startTime-button.quantity-up {
+  position: absolute;
+  height: 50%;
+  top: 0;
+  border-bottom: 1px solid #eee;
+}
+
+.startTime-button.quantity-down {
+  position: absolute;
+  bottom: -1px;
+  height: 50%;
 }
 
 #info {
