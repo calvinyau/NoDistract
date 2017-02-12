@@ -44,7 +44,7 @@ body {
     color: white;
 }
 
-#toggle-button:hover {
+#toggle:hover {
     color: #ff0000;
     background: white;
 }
